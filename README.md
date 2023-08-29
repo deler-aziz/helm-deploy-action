@@ -76,12 +76,13 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
+      uses: 'deler-aziz/helm-deploy-action@v1.0.0'
       with:
         release: 'nginx'
         namespace: 'default'
         chart: 'app'
         token: '${{ github.token }}'
+        namespace-create: true
         values: |
           name: foobar
         value-files: >-
@@ -117,7 +118,7 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
+      uses: 'deler-aziz/helm-deploy-action@v1.0.0'
       with:
         release: 'nginx'
         track: canary
@@ -149,7 +150,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
     - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
+      uses: 'deler-aziz/helm-deploy-action@v1.0.0'
       with:
         # Task remove means to remove the helm release.
         task: 'remove'
@@ -179,7 +180,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
     - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
+      uses: 'deler-aziz/helm-deploy-action@v1.0.0'
       with:
         release: 'nginx'
         namespace: 'default'
