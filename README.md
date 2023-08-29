@@ -33,12 +33,13 @@ payload if the action was triggered by a deployment.
   JSON encoded map.
 - `helm`: Helm binary to execute, one of: [`helm`, `helm3`].
 - `version`: Version of the app, usually commit sha works here.
-- `timeout`: specify a timeout for helm deployment
+- `timeout`: specify a timeout for helm deployment. Defaults to 5m0s.
 - `repo`: Helm chart repository to be added.
 - `repo-alias`: Helm repository alias that will be used.
 - `repo-username`: Helm repository username if authentication is needed.
 - `repo-password`: Helm repository password if authentication is needed.
 - `atomic`: If true, upgrade process rolls back changes made in case of failed upgrade. Defaults to true.
+- `namespace-create`: If true, create namespace if not exist. Defaults to false.
 
 Additional parameters: If the action is being triggered by a deployment event
 and the `task` parameter in the deployment event is set to `"remove"` then this
@@ -47,7 +48,7 @@ action will execute a `helm delete $service`
 #### Versions
 
 - `helm`: v2.17.0
-- `helm3`: v3.8.1
+- `helm3`: v3.12.3
 
 ### Environment
 
