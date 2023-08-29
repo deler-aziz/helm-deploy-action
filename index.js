@@ -255,9 +255,9 @@ async function deploy(helm) {
   if (atomic === true) {
     args.push("--atomic");
   }
-
+  args.push("--create-namespace");
   if (namespaceCreate === true) {
-    args.push("--create-namespace");
+    //args.push("--create-namespace");
   }
 
   await writeFile("./values.yml", values);
