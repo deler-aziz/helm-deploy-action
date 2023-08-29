@@ -12,11 +12,11 @@
 ::debug::param: secrets = "{"secret":"val"}"
 ::debug::param: valueFiles = "[]"
 ::debug::param: removeCanary = 
-::debug::param: timeout = "30"
+::debug::param: timeout = "30m"
 ::debug::param: repository = ""
 ::debug::param: atomic = "true"
 ::debug::env: KUBECONFIG="undefined"
 ::debug::rendering value files [./values.yml] with: {"secrets":{"secret":"val"}}
-[command]helm upgrade app /usr/src/charts/app --install --wait --namespace=default --set=app.name=app --set=app.version=1234 --timeout=30 --values=./values.yml --atomic
-helm upgrade app /usr/src/charts/app --install --wait --namespace=default --set=app.name=app --set=app.version=1234 --timeout=30 --values=./values.yml --atomic
+[command]helm upgrade app /usr/src/charts/app --install --wait --namespace=default --set=app.name=app --set=app.version=1234 --timeout=30m --values=./values.yml --atomic
+helm upgrade app /usr/src/charts/app --install --wait --namespace=default --set=app.name=app --set=app.version=1234 --timeout=30m --values=./values.yml --atomic
 ::debug::not setting deployment status

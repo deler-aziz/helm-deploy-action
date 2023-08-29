@@ -7,6 +7,6 @@ INPUT_NAMESPACE=default \
 INPUT_RELEASE=app \
 INPUT_VERSION=1234 \
 INPUT_TRACK=stable \
-INPUT_TIMEOUT=30 \
+INPUT_TIMEOUT=30m \
 INPUT_VALUES='{"replicaCount": 1, "image": {"repository": "nginx", "tag": "latest"}}' \
 node ../index.js
