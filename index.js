@@ -203,8 +203,8 @@ async function deploy(helm) {
   const timeout = getInput("timeout") || "5m0s";
   const dryRun = core.getInput("dry-run");
   const secrets = getSecrets(core.getInput("secrets"));
-  const atomic = getInput("atomic") || true;
-  const namespaceCreate = getInput("namespace-create") || false;
+  const atomic = getInput("atomic").toLowerCase() || 'true';
+  const namespaceCreate = getInput("namespace-create").toLowerCase() || 'false';
 
   core.debug(`param: track = "${track}"`);
   core.debug(`param: release = "${release}"`);
@@ -252,12 +252,12 @@ async function deploy(helm) {
   }
 
   // If true upgrade process rolls back changes made in case of failed upgrade.
-  if (atomic === true) {
+  if (atomic === 'true') {
     args.push("--atomic");
   }
-  args.push("--create-namespace");
-  if (namespaceCreate === true) {
-    //args.push("--create-namespace");
+
+  if (namespaceCreate === 'true') {
+    args.push("--create-namespace");
   }
 
   await writeFile("./values.yml", values);
