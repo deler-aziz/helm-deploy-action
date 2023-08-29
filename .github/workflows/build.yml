@@ -21,7 +21,7 @@ jobs:
       - uses: docker/metadata-action@v4
         id: meta
         with:
-          images: "ghcr.io/vimeda/helm"
+          images: "ghcr.io/deler-aziz/helm-deploy-action"
           tags: |
             ${{ github.sha }}
             latest

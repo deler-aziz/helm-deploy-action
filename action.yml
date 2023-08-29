@@ -1,6 +1,6 @@
 name: Helm Action
 description: Deploys a helm chart to Kubernetes
-author: lykon
+author: Deler
 branding:
   icon: anchor
   color: gray-dark
@@ -72,4 +72,4 @@ inputs:
     required: false
 runs:
   using: docker
-  image: docker://ghcr.io/vimeda/helm
+  image: docker://ghcr.io/deler-aziz/helm-deploy-action
