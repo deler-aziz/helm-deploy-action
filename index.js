@@ -200,10 +200,11 @@ async function deploy(helm) {
   const version = getInput("version");
   const valueFiles = getValueFiles(getInput("value_files"));
   const removeCanary = getInput("remove_canary");
-  const timeout = getInput("timeout");
+  const timeout = getInput("timeout") || "5m0s";
   const dryRun = core.getInput("dry-run");
   const secrets = getSecrets(core.getInput("secrets"));
   const atomic = getInput("atomic") || true;
+  const namespaceCreate = getInput("namespace-create") || false;
 
   core.debug(`param: track = "${track}"`);
   core.debug(`param: release = "${release}"`);
@@ -220,6 +221,7 @@ async function deploy(helm) {
   core.debug(`param: removeCanary = ${removeCanary}`);
   core.debug(`param: timeout = "${timeout}"`);
   core.debug(`param: atomic = "${atomic}"`);
+  core.debug(`param: namespace-create = "${namespaceCreate}"`);
 
   // Setup command options and arguments.
   let args = [
@@ -236,6 +238,7 @@ async function deploy(helm) {
   if (version) args.push(`--set=app.version=${version}`);
   if (chartVersion) args.push(`--version=${chartVersion}`);
   if (timeout) args.push(`--timeout=${timeout}`);
+  
 
   valueFiles.forEach(f => args.push(`--values=${f}`));
 
@@ -251,6 +254,10 @@ async function deploy(helm) {
   // If true upgrade process rolls back changes made in case of failed upgrade.
   if (atomic === true) {
     args.push("--atomic");
+  }
+
+  if (namespaceCreate === true) {
+    args.push("--create-namespace");
   }
 
   await writeFile("./values.yml", values);

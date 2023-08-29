@@ -64,6 +64,12 @@ inputs:
   repo-password:
     description: Helm repository password if authentication is needed.
     required: false
+  timeout:
+    description: Time to wait for Kubernetes commands to complete (Go duration). Defaults to 5m0s.
+    required: false
+  namespace-create:
+    description: Create namespace if not exist. Defaults to false.
+    required: false
 runs:
   using: docker
   image: docker://ghcr.io/vimeda/helm
