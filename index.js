@@ -304,7 +304,11 @@ async function run() {
     // Setup necessary files.
     if (process.env.KUBECONFIG_FILE) {
       process.env.KUBECONFIG = "./kubeconfig.yml";
-      await writeFile(process.env.KUBECONFIG, process.env.KUBECONFIG_FILE);
+      await writeFile(process.env.KUBECONFIG, process.env.KUBECONFIG_FILE, {
+        encoding: "utf8",
+        flag: "w",
+        mode: 0o600
+      });
     }
     
     const helm = getInput("helm") || "helm3";
